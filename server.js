@@ -45,6 +45,15 @@ app.get('/api/tasks', async (req, res) => {
     }
   });
 
+// Get all tasks in home route too
+app.get('/', async (req, res) => {
+    try {
+      const tasks = await Task.find();
+      res.json(tasks);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
   
 // Update a task
 app.put('/api/tasks/:id', async (req, res) => {
